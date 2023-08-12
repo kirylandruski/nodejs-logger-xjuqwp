@@ -1,4 +1,5 @@
 import moment from "moment";
+import { memoizeOnce } from "./utils/memoizeOnce.js";
 
 const SEPARATOR = " - ";
 
@@ -17,9 +18,9 @@ export class LogLineParser {
     }
 
     return {
-      level: () => line.slice(sep0 + SEPARATOR.length, sep1),
+      level: memoizeOnce(() => line.slice(sep0 + SEPARATOR.length, sep1)),
 
-      time: () => {
+      time: memoizeOnce(() => {
         const s = line.slice(0, sep0);
         if (!s) {
           throw new Error("LogLineParser: empty date");
@@ -30,9 +31,9 @@ export class LogLineParser {
           throw new Error(`LogLineParser: failed to parse date`);
         }
         return date;
-      },
+      }),
 
-      payload: () => {
+      payload: memoizeOnce(() => {
         const s = line.slice(sep1 + SEPARATOR.length);
         if (!s) {
           throw new Error("LogLineParser: empty JSON payload");
@@ -42,7 +43,7 @@ export class LogLineParser {
         } catch (e) {
           throw new Error(`LogLineParser: failed to parse JSON payload, ${e}`);
         }
-      },
+      }),
     };
   }
 }
