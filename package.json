@@ -5,7 +5,8 @@
     "test": "mocha test/**/*.test.js"
   },
   "dependencies": {
-    "commander": "^11.0.0"
+    "commander": "^11.0.0",
+    "moment": "^2.29.4"
   },
   "devDependencies": {
     "chai": "^4.3.7",
