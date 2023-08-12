@@ -1,0 +1,15 @@
+{
+  "type": "module",
+  "scripts": {
+    "fmt": "prettier --write **/*.js",
+    "test": "mocha test/**/*.test.js"
+  },
+  "dependencies": {
+    "commander": "^11.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0",
+    "prettier": "^3.0.1"
+  }
+}
