@@ -54,7 +54,7 @@ node parser.js --input ./app.log --output ./errors.json
 #### Output Format
 
 ```text
-[{"timestamp": <Epoch Unix Timestamp>, "loglevel": "<loglevel>", "transactionId: "<UUID>", "err": "<Error message>" }]
+[{"timestamp": <Epoch Unix Timestamp>, "loglevel": "<loglevel>", "transactionId": "<UUID>", "err": "<Error message>" }]
 ```
 
 #### Output Example
