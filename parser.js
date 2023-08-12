@@ -27,6 +27,9 @@ async function main() {
       transactionId: line.payload().transactionId,
       err: line.payload().err,
     }),
+    (e) => {
+      console.error(e);
+    },
   );
 
   await processor.process();
