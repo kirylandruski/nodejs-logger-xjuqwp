@@ -1,1 +1,1 @@
-require("./dist/parser");
+require("./dist/src/parser");
