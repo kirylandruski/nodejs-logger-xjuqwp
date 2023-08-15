@@ -1,24 +1,24 @@
 import { expect } from "chai";
 
-import { JSONArrayWriter } from "../src/JSONArrayWriter.js";
-import { MockWriteStream } from "./mock/MockWriteStream.js";
+import { JSONArrayFileWriter } from "../src/JSONArrayFileWriter";
+import { MockWriteStream } from "./mock/MockWriteStream";
 
 describe("JSONArrayWriter", () => {
-  let writeStream;
-  let writer;
+  let writeStream: MockWriteStream;
+  let writer: JSONArrayFileWriter;
 
   beforeEach(() => {
     writeStream = new MockWriteStream();
-    writer = new JSONArrayWriter(writeStream);
+    writer = new JSONArrayFileWriter(writeStream);
   });
 
-  const createTestCase = (items) => {
+  const createTestCase = (items: any[]) => {
     it(`should write ${JSON.stringify(items)} array`, async () => {
       for (const item of items) {
-        await writer.push(item);
+        await writer.write(item);
       }
       await writer.close();
-      expect(writeStream.content()).to.equal(JSON.stringify(items));
+      expect(writeStream.getContent()).to.equal(JSON.stringify(items));
     });
   };
 

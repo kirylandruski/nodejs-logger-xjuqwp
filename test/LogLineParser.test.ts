@@ -1,5 +1,6 @@
 import { expect } from "chai";
-import { LogLineParser } from "../src/LogLineParser.js";
+
+import { LogLineParser } from "../src/LogLineParser";
 
 describe("LogLineParser", () => {
   it("should parse a line", () => {

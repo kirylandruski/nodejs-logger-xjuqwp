@@ -1,6 +1,7 @@
 import moment from "moment";
 
-import { memoizeOnce } from "./utils/memoizeOnce.js";
+import { memoizeOnce } from "./utils/memoizeOnce";
+import { ILogLine } from "./ILogLine";
 
 const SEPARATOR = " - ";
 
@@ -8,7 +9,7 @@ export class LogLineParser {
   // ParseLogLine parses log line of the following format: `<ISO Date> - <Log Level> - <JSON Payload>`.
   // Parsing is done in lazy manner, to avoid unnecessary parsing, if not all fields are used.
   // Throws if the described format is not met.
-  static parseLogLine(line) {
+  static parseLogLine(line: string): ILogLine {
     const sep0 = line.indexOf(SEPARATOR);
     if (sep0 === -1) {
       throw new Error("LogLineParser: missing separator");

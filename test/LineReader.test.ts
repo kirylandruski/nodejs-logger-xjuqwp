@@ -1,15 +1,15 @@
-import { MockReadStream } from "./mock/MockReadStream.js";
-import { LineReader } from "../src/LineReader.js";
 import { expect } from "chai";
 
+import { MockReadStream } from "./mock/MockReadStream";
+import { LineReader } from "../src/LineReader";
+
 describe("LineReader", () => {
-  const createTestCase = (rawContent, expectedLines) => {
+  const createTestCase = (rawContent: string, expectedLines: string[]) => {
     it(`should read ${JSON.stringify(expectedLines)} lines`, async () => {
       const readStream = new MockReadStream(rawContent);
       const lineReader = new LineReader(readStream);
-
       const result = [];
-      for await (const l of lineReader.lines()) {
+      for await (const l of lineReader.read()) {
         result.push(l);
       }
 
